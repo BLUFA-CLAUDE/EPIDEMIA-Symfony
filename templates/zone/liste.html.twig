@@ -1,0 +1,57 @@
+{% extends 'acceuil.html.twig' %}
+
+{% block title %}Zone{% endblock %}
+
+{% block body %}
+
+<div class="col-md-12">
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h2 class="m-0 font-weight-bold text-primary">Ajouter une Zone</h2>
+            <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
+        </div>
+        <div class="card-body">
+            {{ form(form) }}  
+        </div>
+    </div>
+  
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h2 class="m-0 font-weight-bold text-primary">Liste des zones</h2>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Zone</th>
+                            <th>Pays</th>
+                            <th>Action</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for z in zones %}
+							<tr>
+								<td>{{z.id}}</td>
+								<td>{{z.nom}}</td>
+                                <td>{{z.pays}}</td>
+                                <td>
+									<a class="btn btn-warning waves-effect waves-light" href="{{path('get_zone', {'id':z.id})}}">Edit</a>
+								</td>
+								<td>
+			                  		<a class="btn btn-danger waves-effect waves-light" href="{{path('delete_zone', {'id':z.id})}}">Supprimer</a>
+								</td>
+							</tr>
+                        {% endfor %}
+					</tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>                               
+
+
+{% endblock %}
